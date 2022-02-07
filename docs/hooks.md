@@ -86,12 +86,13 @@ Available Hooks
 
     Alter the raw HTTP response before returning for parsing.
 
-    Parameters: `string &$headers`, `[array &$info]`
+    Parameters: `string &$headers`, `array &$info`
 
-    The optional `$info` parameter contains the associated array as defined in
+    The `$info` parameter contains the associated array as defined in
     the return value for [curl_getinfo()](https://www.php.net/curl-getinfo#refsect1-function.curl-getinfo-returnvalues).
+    When a non-blocking requests was made (`$options['blocking' = false`), the array will be empty.
 
-This optional parameter will be present when a blocking request was made (`$options['blocking' = true`) and will not be present when a non-blocking request was made (`$options['blocking' = false`). The callback signature needs to be adapted accordingly.
+    Prior to Requests 2.1.0, the `$info` parameter was omitted for non-blocking requests.
 
 * **`curl.before_multi_add`**
 
@@ -149,12 +150,13 @@ This optional parameter will be present when a blocking request was made (`$opti
 
     Alter the raw HTTP response before returning for parsing.
 
-    Parameters: `string &$headers`, `[array &$info]`
+    Parameters: `string &$headers`, `array &$info`
 
     The optional `$info` parameter contains the associated array as defined
     in the return value for [stream_get_meta_data()](https://www.php.net/stream-get-meta-data#refsect1-function.stream-get-meta-data-returnvalues).
+    When a non-blocking requests was made (`$options['blocking' = false`), the array will be empty.
 
-This optional parameter will be present when a blocking request was made (`$options['blocking' = true`) and will not be present when a non-blocking request was made (`$options['blocking' = false`). The callback signature needs to be adapted accordingly.
+    Prior to Requests 2.1.0, the `$info` parameter was omitted for non-blocking requests.
 
 
 Registering Hooks
